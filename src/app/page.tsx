@@ -1,10 +1,10 @@
 'use client'
 import React, { useState } from "react";
 import styles from "./page.module.css";
-import "@/styles/top.css";
 import { usePosts } from "@/hooks/usePosts";
+import PostModal from "@/components/post/PostModal";
+import PostList from "@/components/post/PostList";
 import { Sidebar } from "@/components/layout";
-import { PostList, PostModal } from "@/components/post";
 
 export default function Home() {
   const { posts, loading, handleLike, addPost } = usePosts();

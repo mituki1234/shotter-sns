@@ -7,9 +7,8 @@ import { usePost } from '@/hooks/usePosts';
 import PostItem from '@/components/post/PostItem';
 import { db } from '@/lib/firebase';
 import { collection, getDocs, addDoc, serverTimestamp, doc, updateDoc, increment } from 'firebase/firestore';
+import ReplyItem from "@/components/reply/replyItem";
 import { Sidebar } from '@/components/layout';
-import '@/styles/components/sendReply.css'
-import '@/styles/components/post.css';
 
 export default function PostDetail() {
     const params = useParams();
@@ -104,33 +103,6 @@ export default function PostDetail() {
         fetchReplies();
     }, [id]);
 
-    // リプライ用の特殊なPostItemコンポーネント
-    function ReplyItem({ post, handleReplyLike }: { post: any, handleReplyLike: (docId: string) => void }) {
-        return (
-            <div className="misskey-note reply-item">
-                <div className="note-header">
-                    <div className="user-avatar">{post.user?.charAt(0) || "匿"}</div>
-                    <div className="user-info">
-                        <span className="username">{post.user || "匿名ユーザー"}</span>
-                        <span className="timestamp">{post.date ? new Date(post.date).toLocaleString() : "日時不明"}</span>
-                    </div>
-                </div>
-                <div className="note-content">
-                    <p>{post.content}</p>
-                </div>
-                <div className="note-actions">
-                    <button 
-                        onClick={() => handleReplyLike(post.docId)}
-                        className="reaction-button"
-                    >
-                        <span className="reaction-icon"></span>
-                        <span className="reaction-count">{post.likes || 0}</span>
-                    </button>
-                </div>
-            </div>
-        );
-    }
-
     return (
         <div className='container'>
             <Sidebar onNewPost={() => {}} />
@@ -196,59 +168,6 @@ export default function PostDetail() {
                     <div className="not-found">投稿が見つかりませんでした</div>
                 )}
             </div>
-            
-            <style jsx>{`
-                .post-detail-container {
-                    max-width: 600px;
-                    margin: 0 auto;
-                }
-                
-                .main-post {
-                    margin-bottom: 20px;
-                }
-                
-                .loading {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    padding: 40px 0;
-                }
-                
-                .loading-spinner {
-                    width: 30px;
-                    height: 30px;
-                    border: 3px solid #86b300;
-                    border-radius: 50%;
-                    border-top-color: transparent;
-                    animation: spin 1s linear infinite;
-                    margin-bottom: 10px;
-                }
-                
-                @keyframes spin {
-                    to { transform: rotate(360deg); }
-                }
-                
-                .not-found, .no-replies {
-                    background: #1a1c2d;
-                    color: #bec8e0;
-                    padding: 16px;
-                    border-radius: 8px;
-                    text-align: center;
-                    border: 1px solid #282e3f;
-                }
-                
-                .replies-section h3 {
-                    font-size: 18px;
-                    margin: 20px 0 12px;
-                    color: #d2d9ee;
-                }
-                
-                .reply-list {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 12px;
-                }
-            `}</style>
         </div>
     );
 }

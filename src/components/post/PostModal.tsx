@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import '@/styles/top.css';
 
 interface PostModalProps {
   isOpen: boolean;

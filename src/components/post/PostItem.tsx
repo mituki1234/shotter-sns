@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Post } from "@/types/post";
-import '@/styles/components/post.css';
 
 interface PostItemProps {
   post: Post;
