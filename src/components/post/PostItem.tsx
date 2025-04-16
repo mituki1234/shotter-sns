@@ -11,15 +11,24 @@ export default function PostItem({ post, handleLike }: PostItemProps) {
   return (
     <div className="post">
       <div className="post-header">
-        <h3>{post.user || "匿名ユーザー"}</h3>
-        <span>{post.date ? new Date(post.date).toLocaleString() : "取得できません"}</span>
+        <div className="note-header">
+          <div className="user-avatar">{post.user?.charAt(0) || "匿"}</div>
+          <div className="user-info">
+            <span className="username">{post.user || "匿名ユーザー"}</span>
+            <span className="timestamp">{post.date ? new Date(post.date).toLocaleString() : "日時不明"}</span>
+          </div>
+        </div>
       </div>
-      <p>{post.content}</p>
+      <div className="note-content">
+        <p>{post.content}</p>
+      </div>
       <div className="post-actions">
-        <button onClick={() => handleLike(post.docId)}>
-          いいね {post.likes || 0}
+        <button onClick={() => handleLike(post.docId)} className="reaction-button">
+          <span className="reaction-icon"></span>
+          <span className="reaction-count">{post.likes || 0}</span>
         </button>
-        <button>
+        <button className="comment-button">
+          <span className="comment-icon"></span>
           <Link href={`/posts/${post.docId}`}>
             コメント
           </Link>
