@@ -1,0 +1,35 @@
+/* サイドバー */
+.sidebar {
+    width: 200px;
+    background-color: #fff;
+    border-right: 1px solid #e6e6e6;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.logo {
+    margin-bottom: 30px;
+}
+
+.logo h2 {
+    font-size: 1.5rem;
+    color: #1a91da;
+    margin: 0;
+}
+
+.menu p {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.menu p:hover {
+    background-color: #f5f5f5;
+    color: #777;
+}

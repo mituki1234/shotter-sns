@@ -1,0 +1,118 @@
+.post-header span {
+    font-size: 0.8rem;
+    color: #777;
+}
+/* ...existing code... */
+
+.refresh-info {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 20px;
+    padding: 5px 10px;
+  }
+/* 既存の投稿カードのスタイル */
+
+/* ローディング状態 */
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+}
+
+/* モーダル */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  padding: 15px;
+  border-bottom: 1px solid #e6e6e6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #555;
+}
+
+.modal-body {
+  padding: 15px;
+}
+
+.modal-body textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  font-size: 1.1rem;
+  padding: 10px 0;
+  outline: none;
+  font-family: inherit;
+}
+
+.character-count {
+  text-align: right;
+  color: #777;
+  font-size: 0.8rem;
+}
+
+.modal-footer {
+  padding: 15px;
+  border-top: 1px solid #e6e6e6;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.post-button {
+  background-color: #1a91da;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.post-button:hover {
+  background-color: #0c7abf;
+}
+
+.post-button:disabled {
+  background-color: #9ad0f5;
+  cursor: not-allowed;
+}
+
+/* ツイートボタン */
+.tweet-button {
+  color: #1a91da !important;
+  font-weight: bold !important;
+}

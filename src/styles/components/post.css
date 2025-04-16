@@ -1,0 +1,41 @@
+.post {
+    background-color: #fff;
+    border-radius: 8px;
+    width: 100%;
+    transition: box-shadow 0.3s ease;
+    border-bottom: 1px solid #e6e6e6;
+}
+.post-header {
+    padding: 10px 0;
+}
+.post h3 {
+    display: inline;
+    font-size: 1.3rem;
+    margin: 0;
+    padding: 10px;
+}
+.post span {
+    font-size: 0.9rem;
+    color: #777;
+    margin-left: 10px;
+}
+.post p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    padding: 0 10px;
+}
+.post-actions {
+    display: flex;
+    padding: 10px;
+}
+.post-actions button {
+    background-color: white;
+    color: black;
+    border: 1px solid #777777;
+    border-radius: 5px;
+    padding: 4px 8px;
+    margin: 0 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
