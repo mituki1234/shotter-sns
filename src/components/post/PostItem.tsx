@@ -1,37 +1,98 @@
-import Link from "next/link";
-import { Post } from "@/types/post";
+'use client';
+import { useState, useEffect } from 'react';
+import { formatDistanceToNow } from 'date-fns';
+import { ja } from 'date-fns/locale';
+import Link from 'next/link';
 
-interface PostItemProps {
-  post: Post;
-  handleLike: (docId: string) => void;
+interface Reply {
+  id: string;
+  username: string;
+  content: string;
+  timestamp: string;
 }
 
-export default function PostItem({ post, handleLike }: PostItemProps) {
+interface PostProps {
+  id: string;
+  username: string;
+  content: string;
+  timestamp: string;
+  likes: number;
+  onLike: (id: string) => void;
+  replies?: Reply[];
+  isDetailView?: boolean;
+}
+
+export default function Post({
+  id,
+  username,
+  content,
+  timestamp,
+  likes,
+  onLike,
+  replies = [],
+  isDetailView = false
+}: PostProps) {
+  const [replyCount, setReplyCount] = useState(replies.length);
+  const [timeAgo, setTimeAgo] = useState('');
+  const [userInitial, setUserInitial] = useState('');
+  
+  // 投稿時間を「〜前」形式に変換
+  useEffect(() => {
+    try {
+      const date = new Date(timestamp);
+      const formattedDate = formatDistanceToNow(date, { addSuffix: true, locale: ja });
+      setTimeAgo(formattedDate);
+    } catch (error) {
+      setTimeAgo('不明な日時');
+    }
+    
+    // ユーザー名の頭文字を取得
+    if (username) {
+      setUserInitial(username.charAt(0).toUpperCase());
+    } else {
+      setUserInitial('?');
+    }
+  }, [timestamp, username]);
+  
+  // リプライ数を更新
+  useEffect(() => {
+    setReplyCount(replies.length);
+  }, [replies]);
+
   return (
-    <div className="post">
-      <div className="post-header">
-        <div className="note-header">
-          <div className="user-avatar">{post.user?.charAt(0) || "匿"}</div>
-          <div className="user-info">
-            <span className="username">{post.user || "匿名ユーザー"}</span>
-            <span className="timestamp">{post.date ? new Date(post.date).toLocaleString() : "日時不明"}</span>
-          </div>
+    <div className="misskey-note">
+      <div className="note-header">
+        <div className="user-avatar">
+          {userInitial}
+        </div>
+        <div className="user-info">
+          <div className="username">{username || '匿名ユーザー'}</div>
+          <div className="timestamp">{timeAgo}</div>
         </div>
       </div>
+      
       <div className="note-content">
-        <p>{post.content}</p>
+        <p>{content}</p>
       </div>
+      
+      {/* note-actionsではなくpost-actionsを使用 */}
       <div className="post-actions">
-        <button onClick={() => handleLike(post.docId)} className="reaction-button">
+        <button
+          onClick={() => onLike(id)}
+          aria-label="いいね"
+        >
           <span className="reaction-icon"></span>
-          <span className="reaction-count">{post.likes || 0}</span>
+          <span className="reaction-count">{likes}</span>
         </button>
-        <button className="comment-button">
-          <span className="comment-icon"></span>
-          <Link href={`/posts/${post.docId}`}>
-            コメント
-          </Link>
-        </button>
+        
+        <Link href={`/post/${id}`}>
+          <button
+            aria-label="返信"
+          >
+            <span className="comment-icon"></span>
+            <span className="reaction-count">{replyCount}</span>
+          </button>
+        </Link>
       </div>
     </div>
   );

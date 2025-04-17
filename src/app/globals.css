@@ -23,3 +23,81 @@ html, body {
 .container {
   display: flex;
 }
+.content {
+  flex-direction: column;
+  width: 400px;
+}
+/* リアクションボタン修正 */
+.note-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.reaction-button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 999px;
+  transition: all 0.2s;
+  position: relative;
+  min-width: 70px;
+  justify-content: center;
+}
+
+/* コメントボタン修正 */
+.comment-button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 999px;
+  transition: all 0.2s;
+  position: relative;
+  min-width: 70px;
+  justify-content: center;
+}
+
+.comment-button:hover {
+  background-color: var(--hover-bg);
+  color: var(--accent-color);
+}
+
+.comment-icon {
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23848596'%3E%3Cpath d='M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: inline-block;
+  transition: all 0.2s;
+  filter: var(--icon-filter);
+}
+
+.comment-button:hover .comment-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2386b300'%3E%3Cpath d='M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z'/%3E%3C/svg%3E");
+  filter: none;
+  transform: scale(1.1);
+}
+
+/* モバイル対応の調整 */
+@media (max-width: 480px) {
+  .reaction-button,
+  .comment-button {
+    min-width: 60px;
+    padding: 4px 8px;
+  }
+}
